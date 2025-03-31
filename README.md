@@ -36,23 +36,7 @@ A simple and intuitive task management application built with React and Material
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Deployment on Vercel
 
-1. Install Vercel CLI (optional):
-   ```bash
-   npm install -g vercel
-   ```
-
-2. Deploy to Vercel:
-   - Using Vercel CLI:
-     ```bash
-     vercel
-     ```
-   - OR using Vercel Dashboard:
-     1. Push your code to GitHub
-     2. Go to [Vercel Dashboard](https://vercel.com/dashboard)
-     3. Import your GitHub repository
-     4. Click "Deploy"
 
 ## Technologies Used
 
