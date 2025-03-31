@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { 
   Box, 
   Button, 
@@ -14,17 +15,22 @@ import {
   TextField
 } from "@mui/material";
 import { Edit, SwapVert, Delete } from "@mui/icons-material";
+import { editTask, changePriority, deleteTask, setSelectedTask } from '../redux/taskSlice';
 
-const Action = (props) => {
+const Action = ({ priority, selectedTask }) => {
+  const dispatch = useDispatch();
   const [openPriorityDialog, setOpenPriorityDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
-  const [newPriority, setNewPriority] = useState(props.priority);
-  const [editedText, setEditedText] = useState(props.selectedTask ? props.selectedTask.text : "");
+  const [newPriority, setNewPriority] = useState(priority);
+  const [editedText, setEditedText] = useState(selectedTask?.text || "");
+
+  // If no selected task, don't render anything
+  if (!selectedTask) return null;
 
   // Priority dialog handlers
   const handleOpenPriorityDialog = () => {
     setOpenPriorityDialog(true);
-    setNewPriority(props.priority);
+    setNewPriority(priority);
   };
 
   const handleClosePriorityDialog = () => {
@@ -32,14 +38,16 @@ const Action = (props) => {
   };
 
   const handleChangePriority = () => {
-    props.handleChangePriority(newPriority);
+    if (!newPriority) return;
+    dispatch(changePriority({ id: selectedTask.id, priority: newPriority }));
+    dispatch(setSelectedTask(null));
     setOpenPriorityDialog(false);
   };
 
   // Edit dialog handlers
   const handleOpenEditDialog = () => {
     setOpenEditDialog(true);
-    setEditedText(props.selectedTask.text);
+    setEditedText(selectedTask.text);
   };
 
   const handleCloseEditDialog = () => {
@@ -47,10 +55,15 @@ const Action = (props) => {
   };
 
   const handleEditTask = () => {
-    if (editedText.trim() !== "") {
-      props.handleEditTask(editedText);
-    }
+    if (!editedText.trim()) return;
+    dispatch(editTask({ id: selectedTask.id, text: editedText.trim() }));
+    dispatch(setSelectedTask(null));
     setOpenEditDialog(false);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTask(selectedTask.id));
+    dispatch(setSelectedTask(null));
   };
 
   return (
@@ -73,7 +86,7 @@ const Action = (props) => {
           </Button>
           <Button
             startIcon={<Delete />}
-            onClick={props.handleDeleteTask}
+            onClick={handleDelete}
             color="error"
           >
             Delete

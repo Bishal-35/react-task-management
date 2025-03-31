@@ -1,7 +1,9 @@
 import React from "react";
+import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme } from "@mui/material";
+import { store } from './redux/store';
+import TaskDashboard from "./Context/TaskDashboard";
 import "./App.css";
-import TaskDashborad from "./Context/TaskDashborad";
 
 const theme = createTheme({
   palette: {
@@ -50,9 +52,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <TaskDashborad />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <TaskDashboard />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
