@@ -59,10 +59,9 @@ A modern, feature-rich task management application built with React, Material-UI
 ## Project Structure
 
 ```
-src/
-├── Components/
-│   └── Action.jsx
+src/  
 ├── Context/
+    ├── Action.jsx
 │   ├── Layout.jsx
 │   └── TaskDashboard.jsx
 ├── redux/
