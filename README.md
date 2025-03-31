@@ -6,6 +6,7 @@ A modern, feature-rich task management application built with React, Material-UI
 
 - Create, edit, and delete tasks
 - Organize tasks by priority (High, Medium, Low)
+- Drag and Drop Functionality with auto priority update
 - Mark tasks as complete/incomplete
 - Filter tasks by completion status
 - Sort tasks by priority, date, or status
@@ -53,6 +54,7 @@ A modern, feature-rich task management application built with React, Material-UI
 - **Delete Task:** Remove unwanted tasks
 - **Complete Task:** Check/uncheck tasks to mark them as done
 - **Priority Management:** Organize tasks in High, Medium, and Low priority sections
+- **Drag and Drop:** Change task priority by dragging and droping
 - **Task Filtering:** Show/hide completed or incomplete tasks
 - **Task Sorting:** Sort by priority, date added, or completion status
 
