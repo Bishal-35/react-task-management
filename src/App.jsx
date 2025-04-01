@@ -1,7 +1,5 @@
 import React from "react";
-import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme } from "@mui/material";
-import { store } from './redux/store';
 import TaskDashboard from "./Context/TaskDashboard";
 import "./App.css";
 
@@ -52,11 +50,9 @@ const theme = createTheme({
 
 function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <TaskDashboard />
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <TaskDashboard />
+    </ThemeProvider>
   );
 }
 
